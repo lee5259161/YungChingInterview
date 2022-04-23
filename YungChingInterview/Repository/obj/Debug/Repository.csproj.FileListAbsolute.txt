@@ -1,0 +1,17 @@
+D:\application\YungChing\YungChingInterview\Repository\bin\Debug\Repository.dll
+D:\application\YungChing\YungChingInterview\Repository\bin\Debug\Repository.pdb
+D:\application\YungChing\YungChingInterview\Repository\bin\Debug\Dapper.dll
+D:\application\YungChing\YungChingInterview\Repository\bin\Debug\Model.dll
+D:\application\YungChing\YungChingInterview\Repository\bin\Debug\Newtonsoft.Json.dll
+D:\application\YungChing\YungChingInterview\Repository\bin\Debug\System.Data.SQLite.dll
+D:\application\YungChing\YungChingInterview\Repository\bin\Debug\Model.pdb
+D:\application\YungChing\YungChingInterview\Repository\bin\Debug\Dapper.xml
+D:\application\YungChing\YungChingInterview\Repository\bin\Debug\Newtonsoft.Json.xml
+D:\application\YungChing\YungChingInterview\Repository\bin\Debug\System.Data.SQLite.xml
+D:\application\YungChing\YungChingInterview\Repository\obj\Debug\Repository.csproj.AssemblyReference.cache
+D:\application\YungChing\YungChingInterview\Repository\obj\Debug\Repository.csproj.CoreCompileInputs.cache
+D:\application\YungChing\YungChingInterview\Repository\obj\Debug\Repository.csproj.CopyComplete
+D:\application\YungChing\YungChingInterview\Repository\obj\Debug\Repository.dll
+D:\application\YungChing\YungChingInterview\Repository\obj\Debug\Repository.pdb
+D:\application\YungChing\YungChingInterview\Repository\bin\Debug\x64\SQLite.Interop.dll
+D:\application\YungChing\YungChingInterview\Repository\bin\Debug\x86\SQLite.Interop.dll

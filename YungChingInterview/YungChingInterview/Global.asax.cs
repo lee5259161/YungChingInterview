@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Service;
 
 namespace YungChingInterview
 {
@@ -16,6 +17,11 @@ namespace YungChingInterview
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //AutofacConfig.Bootstrapper();
+
+            SQLiteService.CreateSQLite();
+            
         }
     }
 }
