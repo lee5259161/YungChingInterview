@@ -18,9 +18,10 @@ namespace YungChingInterview
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-           // AutofacConfig.Bootstrapper();
+            AutofacConfig.Bootstrapper();
 
-            SQLiteService.CreateSQLite();
+            SQLiteService sqliteService = new SQLiteService();
+            sqliteService.CreateSQLite();
             
         }
     }

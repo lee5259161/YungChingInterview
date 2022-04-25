@@ -1,0 +1,156 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IEnumerable<Model.StoreInfoDetail>
+
+@{
+    ViewBag.Title = "門市資料";
+
+    //string Permission = ViewBag.Permission.ToString();
+}
+
+<h2>門市資料</h2>
+
+<div>
+    <div class="container">
+        <div class="row ">
+            <div class="col-sm-8 ">
+                <form action="@Url.Action("StoreInfoView")" method="post">
+                    <div class="form-group form-inline">
+                        <input type="text" class="form-control" id="query" name="query" value=@ViewBag.Query>
+                        <button class="btn btn-primary">依門市名稱查詢</button>
+                    </div>
+                </form>
+            </div>
+            @if (ViewBag.SessionAccess.Contains("C"))
+            {
+                <div class="col-sm-4">
+                    <form action="@Url.Action("Create")" method="get">
+                        <div class="form-group">
+                            <input type="submit" value="新增門市資料" class="btn btn-info" />
+                        </div>
+                    </form>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StoreID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StoreName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GroupID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OpenDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CloseDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Manager)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StoreID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StoreName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GroupID)
+            </td>
+            @if (item.OpenDate != null)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.OpenDate)
+                </td>
+            }
+            else
+            {
+                <td></td>
+            }
+            @if (item.CloseDate != null)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.CloseDate)
+                </td>
+            }
+            else
+            {
+                <td></td>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.Manager)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateUser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateDate)
+            </td>
+            <td>
+                @if (ViewBag.SessionAccess.Contains("U"))
+                {
+                    @Html.ActionLink("編輯", "Edit", new { sid = item.StoreID }, new { @class = "btn btn-success" })
+                }
+                @if (ViewBag.SessionAccess.Contains("D"))
+                {
+                    <button class="btn btn-danger" onclick="deleteStoreInfo('@item.StoreID')">刪除</button>
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.PagedListPager((IPagedList)Model, x => Url.Action("StoreInfoView", new { page = x, query = ViewBag.Query }))
+
+<script>
+
+    function deleteStoreInfo(sid) {
+    var statu = confirm("是否要刪除此筆資料？");
+    if (!statu) {
+        return false;
+    }
+    $.ajax({
+        url: '@Url.Action("Delete")',
+        type: 'post',
+        cache: false,
+        async: false,
+        data: {
+            sid: sid,
+        },
+        dataType: 'json',
+       success: function (result) {
+           alert('刪除完成');
+           window.location.replace("StoreInfoView");
+        },
+        error: function (result) {
+            alert('系統忙碌中，請稍後再試');
+        }
+    });
+}
+
+</script>

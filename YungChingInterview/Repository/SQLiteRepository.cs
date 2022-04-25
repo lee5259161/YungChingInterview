@@ -31,7 +31,7 @@ namespace Repository
 
             _sql += @"
                 CREATE TABLE [StoreInfoDetail] (
-                   [StoreID] nvarchar(50) COLLATE NOCASE NOT NULL PRIMARY KEY,
+                   [StoreID] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                    [StoreName] nvarchar(50) COLLATE NOCASE,
                    [Country] nvarchar(50) COLLATE NOCASE,
                    [GroupID] nvarchar(50) COLLATE NOCASE,

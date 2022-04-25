@@ -11,8 +11,8 @@ namespace Service
 {
     public class SQLiteService
     {
-        private static string dbPath = "";
-        private static string connString = "";
+        private string dbPath = "";
+        private string connString = "";
         public SQLiteService()
         {
             dbPath = AppDomain.CurrentDomain.BaseDirectory + "StoreSystem.sqlite";
@@ -20,10 +20,10 @@ namespace Service
         }
 
 
-        public static void CreateSQLite()
+        public void CreateSQLite()
         {
 
-            if (!File.Exists(SQLiteService.dbPath))
+            if (!File.Exists(dbPath))
             {
                 SQLiteRepository sqliteRepository = new SQLiteRepository();
                 sqliteRepository.CreateSQLite();

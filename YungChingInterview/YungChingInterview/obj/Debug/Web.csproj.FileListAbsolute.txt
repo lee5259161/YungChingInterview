@@ -116,3 +116,8 @@ D:\application\YungChing\YungChingInterview\YungChingInterview\obj\Debug\YungChi
 D:\application\YungChing\YungChingInterview\YungChingInterview\obj\Debug\YungChingInterview.pdb
 D:\application\YungChing\YungChingInterview\YungChingInterview\bin\x64\SQLite.Interop.dll
 D:\application\YungChing\YungChingInterview\YungChingInterview\bin\x86\SQLite.Interop.dll
+D:\application\YungChing\YungChingInterview\YungChingInterview\bin\PagedList.dll
+D:\application\YungChing\YungChingInterview\YungChingInterview\bin\PagedList.Mvc.dll
+D:\application\YungChing\YungChingInterview\YungChingInterview\bin\PagedList.xml
+D:\application\YungChing\YungChingInterview\YungChingInterview\bin\PagedList.Mvc.xml
+D:\application\YungChing\YungChingInterview\YungChingInterview\bin\System.ComponentModel.Annotations.dll

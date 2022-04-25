@@ -3,3 +3,6 @@ D:\application\YungChing\YungChingInterview\Model\bin\Debug\Model.pdb
 D:\application\YungChing\YungChingInterview\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
 D:\application\YungChing\YungChingInterview\Model\obj\Debug\Model.dll
 D:\application\YungChing\YungChingInterview\Model\obj\Debug\Model.pdb
+D:\application\YungChing\YungChingInterview\Model\obj\Debug\Model.csproj.AssemblyReference.cache
+D:\application\YungChing\YungChingInterview\Model\bin\Debug\System.ComponentModel.Annotations.dll
+D:\application\YungChing\YungChingInterview\Model\obj\Debug\Model.csproj.CopyComplete

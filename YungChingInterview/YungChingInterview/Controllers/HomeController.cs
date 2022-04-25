@@ -102,7 +102,7 @@ namespace YungChingInterview.Controllers
 
                 FormsAuthentication.RedirectFromLoginPage
                     (UserID, true);
-                return RedirectToAction("Index", "StoreInfo");
+                return RedirectToAction("StoreInfoView", "StoreInfo");
             }
             ViewBag.IsLogin = true;
 
