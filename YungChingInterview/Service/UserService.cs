@@ -49,10 +49,64 @@ namespace Service
             }
             else
             {
-                Data.Access = "";
+                Data.Access = "N";
             }
            
             ReturnResult _result = _IUserRepository.CreateUser(Data);
+
+            return _result;
+        }
+
+        public ReturnResult UpdateUser(UserDetail Data, List<string> selectedItem, string uid)
+        {
+            Data.UpdateUser = uid;
+            Data.UpdateDate = DateTime.Now;
+            if (selectedItem != null)
+            {
+                Data.Access = string.Join(",", selectedItem);
+            }
+            else
+            {
+                Data.Access = "N";
+            }
+
+            ReturnResult _result = _IUserRepository.UpdateUser(Data);
+
+            return _result;
+        }
+        public ReturnResult UpdateUserPassword(UserDetail Data,string uid)
+        {
+            Data.UpdateUser = uid;
+            Data.UpdateDate = DateTime.Now;
+
+            ReturnResult _result = _IUserRepository.UpdateUserPassword(Data);
+
+            return _result;
+        }
+        public ReturnResult DisableUser(string uid, string currentUserId)
+        {
+            UserDetail Data = new UserDetail();
+            Data.UserID = uid;
+            Data.IsDelete = 1;
+
+            Data.UpdateUser = currentUserId;
+            Data.UpdateDate = DateTime.Now;
+
+            ReturnResult _result = _IUserRepository.DisableUser(Data);
+
+            return _result;
+        }
+        
+        public ReturnResult EnableUser(string uid, string currentUserId)
+        {
+            UserDetail Data = new UserDetail();
+            Data.UserID = uid;
+            Data.IsDelete = 0;
+
+            Data.UpdateUser = currentUserId;
+            Data.UpdateDate = DateTime.Now;
+
+            ReturnResult _result = _IUserRepository.EnableUser(Data);
 
             return _result;
         }

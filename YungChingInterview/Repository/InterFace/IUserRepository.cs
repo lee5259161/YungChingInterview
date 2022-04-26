@@ -12,5 +12,9 @@ namespace Repository.InterFace
         List<UserDetail> GetUserList(string query = null);
         UserDetail GetUserByID(string uid);
         ReturnResult CreateUser(UserDetail Data);
+        ReturnResult UpdateUser(UserDetail Data);
+        ReturnResult UpdateUserPassword(UserDetail Data);
+        ReturnResult DisableUser(UserDetail Data);
+        ReturnResult EnableUser(UserDetail Data);
     }
 }

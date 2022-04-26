@@ -1,14 +1,16 @@
-﻿@model Model.UserDetail
+﻿@using Model
+
+@model Model.UserDetail
+
 
 @{
-    ViewBag.Title = "使用者資料新增";
+    ViewBag.Title = "使用者資料編輯";
+    
 }
 
-<h2>使用者資料新增</h2>
+<h2>使用者資料編輯</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<form action="@Url.Action("Edit")" method="post" enctype="multipart/form-data">
 
     <div class="form-horizontal">
         <hr />
@@ -16,18 +18,17 @@
         <div class="form-group">
             @Html.LabelFor(model => model.UserID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.UserID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.UserID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type = "password" } })
-                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                </div>
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-info btn-sm" name="submit" id="changePWDBTN" value="2">更改密碼</button>
             </div>
+        </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -37,29 +38,28 @@
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", type = "email" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger", id = "ValiEmailText" })
-                <br>
-                <font color="red">@ViewBag.DuplicateUid</font>
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
         </div>
+
         <div class="form-group">
-            @Html.Label("SelectedItem", "權限", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10" style="padding: 5px;">
-                @foreach (var item in ViewBag.AccessCB.ItemList)
-                {
+                @Html.Label("SelectedItem", "權限", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10" style="padding: 5px;">
+                    @foreach (var item in ViewBag.AccessCB.ItemList)
+                    {
 
-                    <input type="checkbox"
-                           name="SelectedItem"
-                           id="AcCheckBox"
-                           value="@item.Value"
-                           /> @item.Text
+                        <input type="checkbox"
+                               id="AcCheckBox"
+                               name="SelectedItem"
+                               value="@item.Value"
+                               @if (Model.Access.Contains(item.Value)) { <text> checked </text> } /> @item.Text
 
-                 }
-            </div>
+                     }
+                </div>
         </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10" style="padding: 5px;">
                 <button class="btn btn-info btn-sm" id="checkAllAccess">全選</button>
@@ -69,11 +69,11 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="新增" class="btn btn-default" />
+                <button class="btn btn-default" name="submit" id="saveBTN" value="1">儲存修改</button>
             </div>
         </div>
     </div>
-}
+</form>
 
 <script type="text/Javascript">
 
@@ -94,4 +94,3 @@
     })
 
 </script>
-

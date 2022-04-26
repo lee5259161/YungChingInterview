@@ -12,5 +12,9 @@ namespace Service.InterFace
         List<UserDetail> GetUserList(string query = null);
         UserDetail GetUserByID(string uid);
         ReturnResult CreateUser(UserDetail Data, List<string> selectedItem, string uid);
+        ReturnResult UpdateUser(UserDetail Data, List<string> selectedItem, string uid);
+        ReturnResult UpdateUserPassword(UserDetail Data, string uid);
+        ReturnResult DisableUser(string uid, string currentUserId);
+        ReturnResult EnableUser(string uid, string currentUserId);
     }
 }

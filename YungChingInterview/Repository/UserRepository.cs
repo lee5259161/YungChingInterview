@@ -55,5 +55,50 @@ namespace Repository
 
             return _result;
         }
+        public ReturnResult UpdateUser(UserDetail Data)
+        {
+            var _sql = @"UPDATE UserDetail ";
+            string[] _columns = "UserName,Email,Access,UpdateUser,UpdateDate".Split(',');
+            _sql = this.appendUpdateStr(_sql, _columns);
+            _sql += " where UserID = @UserID";
+            //---------------------------------            
+            var _result = this.ToExecute(_sql, Data);
+
+            return _result;
+        }
+        public ReturnResult UpdateUserPassword(UserDetail Data)
+        {
+            var _sql = @"UPDATE UserDetail ";
+            string[] _columns = "Password,UpdateUser,UpdateDate".Split(',');
+            _sql = this.appendUpdateStr(_sql, _columns);
+            _sql += " where UserID = @UserID";
+            //---------------------------------            
+            var _result = this.ToExecute(_sql, Data);
+
+            return _result;
+        }
+        public ReturnResult DisableUser(UserDetail Data)
+        {
+            var _sql = @"UPDATE UserDetail ";
+            string[] _columns = "IsDelete,UpdateUser,UpdateDate".Split(',');
+            _sql = this.appendUpdateStr(_sql, _columns);
+            _sql += " where UserID = @UserID";
+            //---------------------------------            
+            var _result = this.ToExecute(_sql, Data);
+
+            return _result;
+        }
+        public ReturnResult EnableUser(UserDetail Data)
+        {
+            var _sql = @"UPDATE UserDetail ";
+            string[] _columns = "IsDelete,UpdateUser,UpdateDate".Split(',');
+            _sql = this.appendUpdateStr(_sql, _columns);
+            _sql += " where UserID = @UserID";
+            //---------------------------------            
+            var _result = this.ToExecute(_sql, Data);
+
+            return _result;
+        }
+
     }
 }
