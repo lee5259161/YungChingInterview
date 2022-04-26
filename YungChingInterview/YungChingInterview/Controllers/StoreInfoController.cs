@@ -20,8 +20,6 @@ namespace YungChingInterview.Controllers
             _StoreService = StoreService;            
         }
 
-
-        // GET: StoreInfo
         public ActionResult Index()
         {
             string uid = User.Identity.Name;
@@ -33,7 +31,7 @@ namespace YungChingInterview.Controllers
             ViewBag.SessionAccess = sessionAccess;
             return View();
         }
-        // GET: StoreInfo
+
         [Authorize]
         public ActionResult StoreInfoView(string query = null, int page = 1, int pageSize = 10)
         {
@@ -51,7 +49,7 @@ namespace YungChingInterview.Controllers
             }
             ViewBag.SessionAccess = sessionAccess;
 
-            //要放到Pagedlist的query
+
             ViewBag.Query = query;
 
 

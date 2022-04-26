@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    public class UtilService : IUserService
+    public class UtilService : IUtilService
     {
-        public static string encryptPWD(string uid, string PWD)
+        public string encryptPWD(string uid, string PWD)
         {
             // 將密碼轉為 SHA256 雜湊運算(不可逆)
             string salt = uid.Substring(0, 1).ToLower(); //使用帳號前一碼當作密碼鹽

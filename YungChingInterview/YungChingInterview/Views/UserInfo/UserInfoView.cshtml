@@ -1,0 +1,157 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IEnumerable<Model.UserDetail>
+
+@{
+    ViewBag.Title = "使用者資料";
+
+}
+
+<h2>使用者資料</h2>
+
+<div>
+    <div class="container">
+        <div class="row ">
+            <div class="col-sm-8 ">
+                <form action="@Url.Action("UserInfoView")" method="post">
+                    <div class="form-group form-inline">
+                        <input type="text" class="form-control" value=@ViewBag.Query id="query" name="query">
+                        <button class="btn btn-primary">依使用者名稱查詢</button>
+                    </div>
+                </form>
+            </div>
+            @if (ViewBag.SessionAccess.Contains("C"))
+            {
+                <div class="col-sm-4">
+                    <form action="@Url.Action("Create")" method="get">
+                        <div class="form-group">
+                            <input type="submit" value="新增使用者資料" class="btn btn-info" />
+                        </div>
+                    </form>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDelete)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+
+            @if (item.IsDelete == 0)
+            {
+                <td>啟用</td>
+            }
+            else if (item.IsDelete == 1)
+            {
+                <td>停用</td>
+            }
+
+            <td>
+                @if (ViewBag.SessionAccess.Contains("U"))
+                {
+                    if (item.IsDelete == 0)
+                    {
+                        @Html.ActionLink("編輯", "Edit", new { uid = item.UserID }, new { @class = "btn btn-success" })
+                    }
+                }
+                @if (ViewBag.SessionAccess.Contains("D"))
+                {
+                    if (item.IsDelete == 0)
+                    {
+                        <button class="btn btn-danger" onclick="disableUserInfo('@item.UserID')">停用</button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-primary" onclick="enableUserInfo('@item.UserID')">啟用</button>
+                    }
+                }
+            </td>
+        </tr>
+    }
+
+
+
+</table>
+
+
+
+
+@Html.PagedListPager((IPagedList)Model, x => Url.Action("UserInfoView", new { page = x, query = ViewBag.Query }))
+<script>
+
+    function disableUserInfo(uid) {
+    var statu = confirm("是否要停用此筆帳號？");
+    if (!statu) {
+        return false;
+    }
+    $.ajax({
+        url: '@Url.Action("DisableUser")',
+        type: 'post',
+        cache: false,
+        async: false,
+        data: {
+            uid: uid,
+        },
+        dataType: 'json',
+       success: function (result) {
+           alert('停用完成');
+           window.location.replace("UserInfoView");
+        },
+        error: function (result) {
+            alert('系統忙碌中，請稍後再試');
+        }
+    });
+    }
+
+    function enableUserInfo(uid) {
+    var statu = confirm("是否要啟用此筆帳號？");
+    if (!statu) {
+        return false;
+    }
+    $.ajax({
+        url: '@Url.Action("EnableUser")',
+        type: 'post',
+        cache: false,
+        async: false,
+        data: {
+            uid: uid,
+        },
+        dataType: 'json',
+       success: function (result) {
+           alert('啟用完成');
+           window.location.replace("UserInfoView");
+        },
+        error: function (result) {
+            alert('系統忙碌中，請稍後再試');
+        }
+    });
+}
+
+</script>

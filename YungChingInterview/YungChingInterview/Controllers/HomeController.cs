@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Model;
+using Service.InterFace;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,75 +11,50 @@ namespace YungChingInterview.Controllers
 {
     public class HomeController : Controller
     {
+
+        private IUserService _IUserService;
+        private IUtilService _IUtilService;
+
+        public HomeController(IUserService UserService, IUtilService UtilService)
+        {
+            _IUserService = UserService;
+            _IUtilService = UtilService;
+        }
+
         //GET: Home
         public ActionResult Index()
         {
-            //Session.RemoveAll();
-
             return View();
         }
         [HttpPost]
         public ActionResult Index(string UserID, string Password)
         {
 
-            //登入驗證
-            bool loginPass = false;
 
-            if(UserID=="admin" && Password == "admin")
+            bool loginPass = false;
+            UserDetail user = null;
+
+            if (UserID=="admin" && Password == "admin")
             {
-                //將群組權限放進session
+
                 Session[UserID] = "CRUD";
                 loginPass = true;
             }
+            else
+            {
+                user = _IUserService.GetUserByID(UserID);
 
+                if (user != null)
+                {
+                    string checkPassword = _IUtilService.encryptPWD(UserID, Password);
 
-            //string checkPwd = UtilHelper.encryptPWD(UserID, decryptPWD);
+                    if (checkPassword == user.Password)
+                    {
+                        loginPass = true;
+                    }
+                }
 
-            //SqlConnection conn = DBHelper.DBConnection();
-            //SqlCommand sqlCommand = new SqlCommand(@"SELECT A.[UserID], A.[UserName], A.[Email], 
-            //                                        A.[Password], B.[GroupID],B.[Access] 
-            //                                        FROM UserDetail A ,UserGroupList B 
-            //                                        WHERE A.UserID = B.UserID 
-            //                                        AND A.UserID=@id 
-            //                                        AND A.IsDelete = 0 AND A.Password=@password ");
-            //sqlCommand.Parameters.Add(new SqlParameter("@id", UserID));
-            //sqlCommand.Parameters.Add(new SqlParameter("@password", checkPwd));
-            //sqlCommand.Connection = conn;
-            //UserDetailVM user = new UserDetailVM();
-
-            ////開啟資料庫
-
-            //conn.Open();
-
-            //SqlDataReader reader = sqlCommand.ExecuteReader();
-            //if (reader.HasRows)
-            //{
-            //    while (reader.Read())
-            //    {
-            //        user = new UserDetailVM
-            //        {
-            //            UserID = reader.GetString(reader.GetOrdinal("UserID")),
-            //            UserName = reader.GetString(reader.GetOrdinal("UserName")),
-            //            Email = reader.GetString(reader.GetOrdinal("Email")),
-            //            Password = reader.GetString(reader.GetOrdinal("Password")),
-            //            UserGroupId = reader.GetString(reader.GetOrdinal("GroupID")),
-            //        };
-            //        if (!reader.IsDBNull(reader.GetOrdinal("Access")))
-            //        {
-            //            user.Access = reader.GetString(reader.GetOrdinal("Access"));
-            //        }
-            //    }
-            //    loginPass = true;
-
-
-            //}
-            //else
-            //{
-            //    loginPass = false;
-            //}
-
-            //conn.Close();
-            //conn.Dispose();
+            }
 
             if (loginPass)
             {
@@ -96,8 +73,7 @@ namespace YungChingInterview.Controllers
 
                 if (UserID != "admin")
                 {
-                    //將群組權限放進session
-                    //Session[UserID] = user.UserGroupId + "," + user.Access;
+                    Session[UserID] = user.Access;
                 }
 
                 FormsAuthentication.RedirectFromLoginPage

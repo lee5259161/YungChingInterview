@@ -26,7 +26,10 @@ namespace YungChingInterview
             builder.RegisterType<StoreService>().As<IStoreService>();
             builder.RegisterType<StoreRepository>().As<IStoreRepository>();
 
+            builder.RegisterType<UserService>().As<IUserService>();
+            builder.RegisterType<UserRepository>().As<IUserRepository>();
 
+            builder.RegisterType<UtilService>().As<IUtilService>();
 
             builder.RegisterFilterProvider();
 

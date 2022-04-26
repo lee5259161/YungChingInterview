@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Service.InterFace
+namespace Repository.InterFace
 {
-    public interface IUserService
+    public interface IUserRepository
     {
         List<UserDetail> GetUserList(string query = null);
         UserDetail GetUserByID(string uid);
-        ReturnResult CreateUser(UserDetail Data, List<string> selectedItem, string uid);
+        ReturnResult CreateUser(UserDetail Data);
     }
 }

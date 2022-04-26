@@ -8,5 +8,6 @@ namespace Service.InterFace
 {
     public interface IUtilService
     {
+        string encryptPWD(string uid, string PWD);
     }
 }
