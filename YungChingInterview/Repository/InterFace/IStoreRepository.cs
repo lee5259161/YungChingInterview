@@ -11,5 +11,8 @@ namespace Repository.InterFace
     {
         List<StoreInfoDetail> GetStoreInfoList(string query = null);
         ReturnResult CreateStoreInfo(StoreInfoDetail Data);
+        StoreInfoDetail GetStoreInfoByID(int sid);
+        ReturnResult UpdateStoreInfo(StoreInfoDetail Data);
+        ReturnResult DeleteStoreInfo(int sid);
     }
 }

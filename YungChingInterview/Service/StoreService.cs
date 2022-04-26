@@ -26,10 +26,37 @@ namespace Service
             return _result;
 
         }
-        public ReturnResult CreateStoreInfo(StoreInfoDetail Data)
+        public ReturnResult CreateStoreInfo(StoreInfoDetail Data,string uid)
+        {
+            Data.UpdateUser = uid;
+            Data.UpdateDate = DateTime.Now;
+            ReturnResult _result = _IStoreRepository.CreateStoreInfo(Data);
+
+            return _result;
+        }
+
+        public StoreInfoDetail GetStoreInfoByID(int sid)
         {
 
-            ReturnResult _result = _IStoreRepository.CreateStoreInfo(Data);
+            StoreInfoDetail _result = _IStoreRepository.GetStoreInfoByID(sid);
+
+            return _result;
+
+        }
+        public ReturnResult UpdateStoreInfo(StoreInfoDetail Data,string uid)
+        {
+            Data.UpdateUser = uid;
+            Data.UpdateDate = DateTime.Now;
+
+            ReturnResult _result = _IStoreRepository.UpdateStoreInfo(Data);
+
+            return _result;
+        }
+
+        public ReturnResult DeleteStoreInfo(int sid)
+        {
+
+            ReturnResult _result = _IStoreRepository.DeleteStoreInfo(sid);
 
             return _result;
         }

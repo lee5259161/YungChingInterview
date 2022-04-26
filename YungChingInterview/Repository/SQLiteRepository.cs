@@ -34,7 +34,6 @@ namespace Repository
                    [StoreID] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                    [StoreName] nvarchar(50) COLLATE NOCASE,
                    [Country] nvarchar(50) COLLATE NOCASE,
-                   [GroupID] nvarchar(50) COLLATE NOCASE,
                    [OpenDate] datetime,
                    [CloseDate] datetime,
                    [Manager] nvarchar(50) COLLATE NOCASE,

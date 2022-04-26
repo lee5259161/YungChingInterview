@@ -12,7 +12,7 @@ namespace YungChingInterview.Controllers
         //GET: Home
         public ActionResult Index()
         {
-            Session.RemoveAll();
+            //Session.RemoveAll();
 
             return View();
         }

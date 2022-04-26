@@ -47,9 +47,6 @@
             @Html.DisplayNameFor(model => model.Country)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.GroupID)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.OpenDate)
         </th>
         <th>
@@ -78,9 +75,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Country)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GroupID)
             </td>
             @if (item.OpenDate != null)
             {
@@ -145,10 +139,10 @@
         dataType: 'json',
        success: function (result) {
            alert('刪除完成');
-           window.location.replace("StoreInfoView");
+           location.reload();
         },
         error: function (result) {
-            alert('系統忙碌中，請稍後再試');
+            alert('刪除失敗，請通知管理員');
         }
     });
 }

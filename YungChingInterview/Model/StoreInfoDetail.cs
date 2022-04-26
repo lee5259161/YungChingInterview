@@ -22,10 +22,6 @@ namespace Model
         [Display(Name = "縣市別")]
         public string Country { get; set; }
 
-        [Required]
-        [Display(Name = "群組名稱")]
-        public string GroupID { get; set; }
-
         [Display(Name = "開幕日期")]
         public Nullable<System.DateTime> OpenDate { get; set; }
 
